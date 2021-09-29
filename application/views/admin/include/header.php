@@ -55,7 +55,7 @@
             <ul class="sidebar-menu do-nicescrol">
                 <!-- <li class="sidebar-header">MAIN NAVIGATION</li> -->
                  <li>
-                   <a href="<?=base_url('admin/manage_user')?>"><i class="fa fa-dashcube"></i>User Management</a>
+                   <a href="<?=base_url('admin/manage_product')?>"><i class="fa fa-dashcube"></i>Product Management</a>
                 </li>
                
                 <li><a href="<?=base_url('admin/logout')?>" onclick="return confirm('Are you sure want to exit')"><i class="fa fa-sign-out"></i>Logout</a>

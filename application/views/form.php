@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <html>
 <head>
-    <title>Registration Form</title>
+    <title>Product Form</title>
     
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
  <div class="container">
   <br />
-  <h3 align="center">User Registration Form</h3>
+  <h3 align="center">Product Form</h3>
   <br />
   <div class="row">
    <div class="col-md-4">
@@ -22,24 +22,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <span id="success_message"></span>
     <form method="post" id="contact_form">
      <div class="form-group">
-      <input type="text" name="name" id="name" class="form-control" placeholder="Name" />
+      <input type="text" name="name" id="name" class="form-control" placeholder="Product Name" />
       <span id="name_error" class="text-danger"></span>
      </div>
      <div class="form-group">
-      <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" />
-      <span id="email_error" class="text-danger"></span>
+      <textarea class="form-control" name="description" placeholder="Product Description"></textarea>
+      <span id="description_error" class="text-danger"></span>
      </div>
      <div class="form-group">
-      <input type="date" name="dob" id="subject" class="form-control">
-      <span id="dob_error" class="text-danger"></span>
+      <select name="country" id="country" class="form-control">
+        <option value="">Select Country</option>
+        <?php
+          foreach ($country->data as $key => $value) 
+          {
+            echo "<option value=".$value->name." data-currency=".$value->currency.">".$value->name."</option>";
+          }
+        ?>
+      </select>
+      <span id="country_error" class="text-danger"></span>
      </div>
       <div class="form-group">
-      <input type="file" name="img" id="subject" class="form-control">
-      <span id="img_error" class="text-danger"></span>
+      <input type="text" name="currency" id="currency" readonly class="form-control">
      </div>
   
      <div class="form-group">
-      <input type="submit" name="contact" id="contact" class="btn btn-info" value="Contact Us">
+      <input type="submit" name="contact" id="contact" class="btn btn-info" value="Submit">
      </div>
     </form>
    </div>
@@ -49,6 +56,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 </html>
 <script>
+
+   $(document).ready(function(){
+    $("#country").change(function(){
+        var element = $(this).find('option:selected');
+        var myTag = element.attr("data-currency");
+        $('#currency').val(myTag);
+    });
+});
+
 $(document).ready(function(){
 
  $('#contact_form').on('submit', function(event){
@@ -77,38 +93,29 @@ $(document).ready(function(){
      {
       $('#name_error').html('');
      }
-     if(data.email_error != '')
+     if(data.description_error != '')
      {
-      $('#email_error').html(data.email_error);
+      $('#description_error').html(data.description_error);
      }
      else
      {
-      $('#email_error').html('');
+      $('#description_error').html('');
      }
-     if(data.subject_error != '')
+     if(data.country_error != '')
      {
-      $('#dob_error').html(data.dob_error);
-     }
-     else
-     {
-      $('#dob_error').html('');
-     }
-     if(data.message_error != '')
-     {
-      $('#img_error').html(data.img_error);
+      $('#country_error').html(data.country_error);
      }
      else
      {
-      $('#img_error').html('');
+      $('#country_error').html('');
      }
     }
     if(data.success)
     {
      $('#success_message').html(data.success);
      $('#name_error').html('');
-     $('#email_error').html('');
-     $('#dob_error').html('');
-     $('#img_error').html('');
+     $('#description_error').html('');
+     $('#country_error').html('')
      $('#contact_form')[0].reset();
     }
     $('#contact').attr('disabled', false);

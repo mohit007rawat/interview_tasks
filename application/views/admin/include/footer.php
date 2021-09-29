@@ -77,11 +77,7 @@ $(document).ready(function(){
     responsive: true,
       "processing": true,
     "serverSide": true,
-    "ajax": "<?=base_url('admin/datatable/')?>",
-    dom: 'Bfrtip',
-        buttons: [
-           'csv'
-        ]
+    "ajax": "<?=base_url('admin/datatable/')?>"
 });
 
 

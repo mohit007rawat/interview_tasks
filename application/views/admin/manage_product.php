@@ -16,29 +16,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header" style="background-color: #c8c9eebd;"><i class="fa fa-table"></i> Download Brochure List</div>
+                    <div class="card-header" style="background-color: #c8c9eebd;"><i class="fa fa-table"></i> Product List</div>
                     <div class="card-body" style="background-color: #f8ffc63d;">
                         <div class="table-responsive">
                             <table id="default-datatable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Sl No.</th>
-                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Mobile Number</th>                                        
-                                        <th>Product</th>                                            
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Country</th>
+                                        <th>Currency</th>
+                                        <th>Action</th>                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach($download_brochure as $key) { ?>
-                                    <tr data-id="<?=$key->id?>">
-                                        <td><?=$i++?></td>
-                                       <td><?=$key->name?></td>
-                                        <td><?=$key->email?></td>
-                                        <td><?=$key->mobile?></td>
-                                        <td><?=$key->p_name?></td>
-                                    </tr>
-                                    <?php } ?>
+                                   
                                 </tbody>
                             </table>
                         </div>

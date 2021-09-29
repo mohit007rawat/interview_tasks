@@ -41,15 +41,6 @@
 
 			   </div>
 			  </div>
-
-			<div class="form-row mr-0 ml-0">
-			<div class="form-group col-6 text-left">
-			  <a href="<?=base_url('admin/forget')?>">Reset Password</a>
-			 </div>
-			 <!-- <div class="form-group col-6 text-right">
-			  <a href="<?=base_url('store/signup')?>">SignUp</a>
-			 </div> -->
-			</div>
 			 <button type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Sign In</button>
 			 </form>
 		   </div>

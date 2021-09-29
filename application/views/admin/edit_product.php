@@ -23,42 +23,47 @@
                     <div class="card-body">
                         <div class="card-title">Edit Form</div>
                         <hr>
-                        <form method="post" enctype="multipart/form-data"  action="<?=base_url('admin/edit_user/').$this->uri->segment('3')?>"> 
+                        <form method="post" enctype="multipart/form-data"  action="<?=base_url('admin/edit_product/').$this->uri->segment('3')?>"> 
                        
                          <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Name</label>
+                                <label class="col-sm-2 col-form-label">Product Name</label>
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control form-control-square" value="<?=$users->name?>" name="name">
                                     <?=form_error('name')?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Email</label>
+                                <label class="col-sm-2 col-form-label">Product Description</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-square" value="<?=$users->email?>" name="email">
-                                    <?=form_error('email')?>
+                                    <textarea class="form-control form-control-square"  name="description"><?=$users->description?></textarea>
+                                    <?=form_error('description')?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">DOB</label>
+                                <label class="col-sm-2 col-form-label">Country</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-square" value="<?=$users->dob?>" name="dob">
-                                    <?=form_error('dob')?>
+                                    <select name="country" id="country" class="form-control form-control-square">
+                                        <option value="">Select Country</option>
+                                        <?php
+                                          foreach ($country->data as $key => $value) 
+                                          {
+                                            // echo "<option value=".$value->name." data-currency=".$value->currency." >".$value->name."</option>";
+                                            echo '<option '.($value->name == $users->country ? 'selected':'').' value="'.$value->name.'" data-currency="'.$value->currency.'" >'.$value->name.'</option>';
+                                          }
+                                        ?>
+                                      </select>
+                                    <?=form_error('country')?>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Img</label>
+                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Product Name</label>
                                 <div class="col-sm-3">
-                                    <input type="file" class="form-control form-control-square"  name="img">
-                                    <?=form_error('img')?>
+                                    <input type="text" class="form-control form-control-square" readonly value="<?=$users->currency?>" id="currency" name="currency">
+                                    <?=form_error('name')?>
                                 </div>
                             </div>
-                            <img width='180px' height="120px" src="<?=base_url('assets/img/').$users->img?>"><                            
-
-
-							
-							                           
-                            <div class="form-group row">
+                             </div>
+                          <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-3">
                                     <button type="submit"
@@ -76,3 +81,13 @@
     </div>
  
 <?php include('include/footer.php')?>
+<script>
+
+   $(document).ready(function(){
+    $("#country").change(function(){
+        var element = $(this).find('option:selected');
+        var myTag = element.attr("data-currency");
+        $('#currency').val(myTag);
+    });
+});
+</script>
